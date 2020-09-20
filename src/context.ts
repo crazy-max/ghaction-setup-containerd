@@ -8,6 +8,6 @@ export interface Inputs {
 export async function getInputs(): Promise<Inputs> {
   return {
     version: core.getInput('containerd-version') || 'latest',
-    config: core.getInput('config'),
+    config: core.getInput('config')
   };
 }
