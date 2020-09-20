@@ -24,6 +24,7 @@
     "@actions/exec": "^1.0.4",
     "@actions/http-client": "^1.0.8",
     "@actions/tool-cache": "^1.6.0",
+    "execa": "^4.0.3",
     "semver": "^7.3.2"
   },
   "devDependencies": {
