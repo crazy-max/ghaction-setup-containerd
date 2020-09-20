@@ -35,7 +35,7 @@ export async function install(inputVersion: string): Promise<string> {
   core.debug(`Extracted to ${extPath}`);
   core.endGroup();
 
-  const cachePath: string = await tc.cacheDir(extPath, 'ghaction-containerd', version);
+  const cachePath: string = await tc.cacheDir(extPath, 'ghaction-setup-containerd', version);
   core.debug(`Cached to ${cachePath}`);
 
   core.addPath(path.join(cachePath, 'bin'));

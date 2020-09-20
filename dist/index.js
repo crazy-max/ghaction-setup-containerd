@@ -65,7 +65,7 @@ function install(inputVersion) {
         const extPath = yield tc.extractTar(downloadPath);
         core.debug(`Extracted to ${extPath}`);
         core.endGroup();
-        const cachePath = yield tc.cacheDir(extPath, 'ghaction-containerd', version);
+        const cachePath = yield tc.cacheDir(extPath, 'ghaction-setup-containerd', version);
         core.debug(`Cached to ${cachePath}`);
         core.addPath(path.join(cachePath, 'bin'));
         core.info(`Added ${path.join(cachePath, 'bin')} to the path`);
@@ -265,7 +265,7 @@ exports.getRelease = void 0;
 const httpm = __importStar(__webpack_require__(9925));
 exports.getRelease = (version) => __awaiter(void 0, void 0, void 0, function* () {
     const url = `https://github.com/containerd/containerd/releases/${version}`;
-    const http = new httpm.HttpClient('ghaction-containerd');
+    const http = new httpm.HttpClient('ghaction-setup-containerd');
     return (yield http.getJson(url)).result;
 });
 //# sourceMappingURL=github.js.map
