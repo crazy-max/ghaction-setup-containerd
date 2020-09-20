@@ -41,17 +41,17 @@ export async function install(inputVersion: string): Promise<string> {
   core.addPath(path.join(cachePath, 'bin'));
   core.info(`Added ${path.join(cachePath, 'bin')} to the path`);
 
-  core.startGroup('Fixing perms');
   fs.readdir(path.join(cachePath, 'bin'), function (err, files) {
     if (err) {
       throw err;
     }
+    core.startGroup('Fixing perms');
     files.forEach(function (file, index) {
       core.info(path.join(cachePath, 'bin', file));
       fs.chmodSync(path.join(cachePath, 'bin', file), '0755');
     });
+    core.endGroup();
   });
-  core.endGroup();
 
   return cachePath;
 }
@@ -71,7 +71,10 @@ export async function getConfig(inputConfig: string): Promise<string> {
     if (res.stderr != '' && !res.success) {
       throw new Error(res.stderr);
     }
+    core.startGroup(`Generating config to ${configFile}`);
+    core.info(res.stdout);
     fs.writeFileSync(configFile, res.stdout);
+    core.endGroup();
   });
 
   return configFile;
