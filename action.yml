@@ -1,0 +1,21 @@
+# https://help.github.com/en/articles/metadata-syntax-for-github-actions
+name: 'containerd'
+description: 'GitHub Action to set up containerd'
+author: 'crazy-max'
+branding:
+  color: 'gray-dark'
+  icon: 'box'
+
+inputs:
+  containerd-version:
+    description: 'containerd version. Example: v1.4.1'
+    default: 'latest'
+    required: false
+  config:
+    description: 'Path to the configuration file'
+    required: false
+
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+  post: 'dist/index.js'

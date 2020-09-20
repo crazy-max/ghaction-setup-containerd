@@ -1,0 +1,42 @@
+{
+  "name": "containerd",
+  "description": "GitHub Action to set up containerd",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc && ncc build",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "test": "jest --coverage",
+    "pre-checkin": "yarn run format && yarn run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crazy-max/ghaction-containerd.git"
+  },
+  "keywords": [
+    "actions",
+    "containerd"
+  ],
+  "author": "CrazyMax",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.2.5",
+    "@actions/exec": "^1.0.4",
+    "@actions/http-client": "^1.0.8",
+    "@actions/tool-cache": "^1.6.0",
+    "semver": "^7.3.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.3",
+    "@types/node": "^14.0.14",
+    "@vercel/ncc": "^0.24.1",
+    "dotenv": "^8.2.0",
+    "jest": "^26.1.0",
+    "jest-circus": "^26.1.0",
+    "jest-runtime": "^26.1.0",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.1",
+    "typescript": "^4.0.3",
+    "typescript-formatter": "^7.2.2"
+  }
+}
