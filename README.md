@@ -15,6 +15,8 @@ ___
 
 * [Usage](#usage)
   * [Quick start](#quick-start)
+  * [Pull Docker image](#pull-docker-image)
+  * [Build and push Docker image](#build-and-push-docker-image)
 * [Customizing](#customizing)
   * [inputs](#inputs)
 * [Keep up-to-date with GitHub Dependabot](#keep-up-to-date-with-github-dependabot)
@@ -31,10 +33,6 @@ name: containerd
 
 on:
   push:
-    branches: master
-    tags:
-  pull_request:
-    branches: master
 
 jobs:
   containerd:
@@ -43,6 +41,70 @@ jobs:
       -
         name: Set up containerd
         uses: crazy-max/ghaction-setup-containerd@v1
+```
+
+### Pull Docker image
+
+```yaml
+name: containerd
+
+on:
+  push:
+
+jobs:
+  containerd:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up containerd
+        uses: crazy-max/ghaction-setup-containerd@v1
+      -
+        name: Pull Docker image
+        run: |
+          sudo ctr i pull --all-platforms --all-metadata docker.io/crazymax/diun:latest
+```
+
+### Build and push Docker image
+
+```yaml
+name: containerd
+
+on:
+  push:
+
+jobs:
+  containerd:
+    runs-on: ubuntu-latest
+    steps:
+       -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      -
+        name: Set up containerd
+        uses: crazy-max/ghaction-setup-containerd@v1
+      -
+        name: Build Docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
+          tags: docker.io/crazymax/diun:latest
+          outputs: type=oci,dest=/tmp/image.tar
+      -
+        name: Import image in containerd
+        run: |
+          sudo ctr i import --base-name docker.io/crazymax/diun --digests --all-platforms /tmp/image.tar
+      -
+        name: Push image with containerd
+        run: |
+          sudo ctr i push --user "${{ secrets.DOCKER_USERNAME }}:${{ secrets.DOCKER_PASSWORD }}" docker.io/crazymax/diun:latest
 ```
 
 ## Customizing
