@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
+import * as semver from 'semver';
 import * as util from 'util';
 import * as execm from './exec';
 import * as github from './github';
@@ -10,7 +11,12 @@ import * as tc from '@actions/tool-cache';
 const osPlat: string = os.platform();
 const osArch: string = os.arch();
 
-export async function install(inputVersion: string): Promise<string> {
+export interface InstallResult {
+  version: string;
+  cachePath: string;
+}
+
+export async function install(inputVersion: string): Promise<InstallResult> {
   const release: github.GitHubRelease | null = await github.getRelease(inputVersion);
   if (!release) {
     throw new Error(`Cannot find containerd ${inputVersion} release`);
@@ -53,7 +59,10 @@ export async function install(inputVersion: string): Promise<string> {
     core.endGroup();
   });
 
-  return cachePath;
+  return {
+    cachePath: cachePath,
+    version: version
+  };
 }
 
 export async function getConfig(inputConfig: string): Promise<string> {
@@ -83,5 +92,8 @@ export async function getConfig(inputConfig: string): Promise<string> {
 const getFilename = (version: string): string => {
   const platform: string = osPlat == 'win32' ? 'windows' : 'linux';
   const arch: string = osArch == 'x64' ? 'amd64' : 'i386';
+  if (semver.satisfies(version, '<=1.3.4')) {
+    return util.format('containerd-%s.%s-%s.tar.gz', version, platform, arch);
+  }
   return util.format('containerd-%s-%s-%s.tar.gz', version, platform, arch);
 };
