@@ -35,7 +35,7 @@ jobs:
       -
         name: Dump context
         if: always()
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v1.2.0
 
   pull:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
       -
         name: Dump context
         if: always()
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v1.2.0
 
   build-push:
     if: github.event_name != 'pull_request'
@@ -95,4 +95,4 @@ jobs:
       -
         name: Dump context
         if: always()
-        uses: crazy-max/ghaction-dump-context@v1
+        uses: crazy-max/ghaction-dump-context@v1.2.0
