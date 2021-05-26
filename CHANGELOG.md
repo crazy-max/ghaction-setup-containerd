@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.2.0 (2021/05/26)
+
+* Bump lodash from 4.17.20 to 4.17.21 (#25)
+* Bump hosted-git-info from 2.8.8 to 2.8.9 (#24)
+* Remove config dump (#26)
+* Bump @actions/core from 1.2.6 to 1.3.0 (#17 #23)
+
 ## 1.1.0 (2021/03/30)
 
 * Bump @actions/http-client from 1.0.9 to 1.0.11 (#14)
