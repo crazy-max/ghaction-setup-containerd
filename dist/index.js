@@ -69,7 +69,7 @@ function install(inputVersion) {
         const cachePath = yield tc.cacheDir(extPath, 'ghaction-setup-containerd', version);
         core.debug(`Cached to ${cachePath}`);
         core.addPath(path.join(cachePath, 'bin'));
-        core.info(`Added ${path.join(cachePath, 'bin')} to the path`);
+        core.debug(`Added ${path.join(cachePath, 'bin')} to the path`);
         fs.readdir(path.join(cachePath, 'bin'), function (err, files) {
             if (err) {
                 throw err;
@@ -320,9 +320,7 @@ const execa_1 = __importDefault(__webpack_require__(5447));
 const fs_1 = __importDefault(__webpack_require__(5747));
 const os = __importStar(__webpack_require__(2087));
 const path_1 = __importDefault(__webpack_require__(5622));
-const semver = __importStar(__webpack_require__(1383));
 const context_1 = __webpack_require__(3842);
-const execm = __importStar(__webpack_require__(7757));
 const containerd = __importStar(__webpack_require__(2826));
 const stateHelper = __importStar(__webpack_require__(8647));
 const core = __importStar(__webpack_require__(2186));
@@ -337,17 +335,7 @@ function run() {
             let inputs = yield context_1.getInputs();
             const install = yield containerd.install(inputs.version);
             const config = yield containerd.getConfig(inputs.config);
-            if (semver.satisfies(install.version, '>=1.3')) {
-                core.startGroup('Dump config');
-                yield execm.exec('containerd', ['config', 'dump'], true).then(res => {
-                    if (res.stderr != '' && !res.success) {
-                        throw new Error(res.stderr);
-                    }
-                    core.info(res.stdout);
-                });
-                core.endGroup();
-            }
-            core.info('Starting containerd');
+            core.info(`Starting containerd ${install.version}`);
             const logfile = path_1.default.join(fs_1.default.mkdtempSync(path_1.default.join(os.tmpdir(), 'github-pages-')), 'containerd.log');
             const out = fs_1.default.openSync(logfile, 'w');
             stateHelper.setLogfile(logfile);
