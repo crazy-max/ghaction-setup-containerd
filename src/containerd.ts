@@ -45,7 +45,7 @@ export async function install(inputVersion: string): Promise<InstallResult> {
   core.debug(`Cached to ${cachePath}`);
 
   core.addPath(path.join(cachePath, 'bin'));
-  core.info(`Added ${path.join(cachePath, 'bin')} to the path`);
+  core.debug(`Added ${path.join(cachePath, 'bin')} to the path`);
 
   fs.readdir(path.join(cachePath, 'bin'), function (err, files) {
     if (err) {
