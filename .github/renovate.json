@@ -1,0 +1,12 @@
+{
+  "extends": [
+    "config:base",
+    ":pinDependencies",
+    ":disableDevDependencies",
+    ":prHourlyLimitNone"
+  ],
+  "labels": [
+    ":game_die: dependencies",
+    ":robot: bot"
+  ]
+}
