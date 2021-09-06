@@ -3,9 +3,9 @@ import * as os from 'os';
 import * as path from 'path';
 import * as semver from 'semver';
 import * as util from 'util';
-import * as execm from './exec';
 import * as github from './github';
 import * as core from '@actions/core';
+import * as exec from '@actions/exec';
 import * as tc from '@actions/tool-cache';
 
 const osPlat: string = os.platform();
@@ -76,15 +76,20 @@ export async function getConfig(inputConfig: string): Promise<string> {
   }
 
   const configFile: string = path.join(os.homedir(), 'config.toml');
-  await execm.exec('containerd', ['config', 'default'], true).then(res => {
-    if (res.stderr != '' && !res.success) {
-      throw new Error(res.stderr);
-    }
-    core.startGroup(`Generating config to ${configFile}`);
-    core.info(res.stdout);
-    fs.writeFileSync(configFile, res.stdout);
-    core.endGroup();
-  });
+  await exec
+    .getExecOutput('containerd', ['config', 'default'], {
+      ignoreReturnCode: true,
+      silent: true
+    })
+    .then(res => {
+      if (res.stderr.length > 0 && res.exitCode != 0) {
+        throw new Error(res.stderr.trim());
+      }
+      core.startGroup(`Generating config to ${configFile}`);
+      core.info(res.stdout.trim());
+      fs.writeFileSync(configFile, res.stdout.trim());
+      core.endGroup();
+    });
 
   return configFile;
 }
