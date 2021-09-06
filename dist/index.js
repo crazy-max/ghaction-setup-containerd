@@ -42,9 +42,9 @@ const os = __importStar(__webpack_require__(2087));
 const path = __importStar(__webpack_require__(5622));
 const semver = __importStar(__webpack_require__(1383));
 const util = __importStar(__webpack_require__(1669));
-const execm = __importStar(__webpack_require__(7757));
 const github = __importStar(__webpack_require__(5928));
 const core = __importStar(__webpack_require__(2186));
+const exec = __importStar(__webpack_require__(1514));
 const tc = __importStar(__webpack_require__(7784));
 const osPlat = os.platform();
 const osArch = os.arch();
@@ -98,13 +98,18 @@ function getConfig(inputConfig) {
             fs.mkdirSync(configDir, { recursive: true });
         }
         const configFile = path.join(os.homedir(), 'config.toml');
-        yield execm.exec('containerd', ['config', 'default'], true).then(res => {
-            if (res.stderr != '' && !res.success) {
-                throw new Error(res.stderr);
+        yield exec
+            .getExecOutput('containerd', ['config', 'default'], {
+            ignoreReturnCode: true,
+            silent: true
+        })
+            .then(res => {
+            if (res.stderr.length > 0 && res.exitCode != 0) {
+                throw new Error(res.stderr.trim());
             }
             core.startGroup(`Generating config to ${configFile}`);
-            core.info(res.stdout);
-            fs.writeFileSync(configFile, res.stdout);
+            core.info(res.stdout.trim());
+            fs.writeFileSync(configFile, res.stdout.trim());
             core.endGroup();
         });
         return configFile;
@@ -169,68 +174,6 @@ function getInputs() {
 }
 exports.getInputs = getInputs;
 //# sourceMappingURL=context.js.map
-
-/***/ }),
-
-/***/ 7757:
-/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.exec = void 0;
-const actionsExec = __importStar(__webpack_require__(1514));
-exports.exec = (command, args = [], silent) => __awaiter(void 0, void 0, void 0, function* () {
-    let stdout = '';
-    let stderr = '';
-    const options = {
-        silent: silent,
-        ignoreReturnCode: true
-    };
-    options.listeners = {
-        stdout: (data) => {
-            stdout += data.toString();
-        },
-        stderr: (data) => {
-            stderr += data.toString();
-        }
-    };
-    const returnCode = yield actionsExec.exec(command, args, options);
-    return {
-        success: returnCode === 0,
-        stdout: stdout.trim(),
-        stderr: stderr.trim()
-    };
-});
-//# sourceMappingURL=exec.js.map
 
 /***/ }),
 
