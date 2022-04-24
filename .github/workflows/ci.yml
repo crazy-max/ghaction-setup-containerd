@@ -48,8 +48,12 @@ jobs:
           sudo ctr i pull --all-platforms --all-metadata docker.io/crazymax/diun:latest
 
   build-push:
-    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
+    services:
+      registry:
+        image: registry:2
+        ports:
+          - 5000:5000
     steps:
       -
         name: Checkout
@@ -64,18 +68,22 @@ jobs:
         name: Set up containerd
         uses: ./
       -
+        name: List containerd plugins
+        run: |
+          sudo ctr plugins list --detailed
+      -
         name: Build Docker image
         uses: docker/build-push-action@v2
         with:
           context: ./test
           file: ./test/Dockerfile
           platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/ppc64le,linux/s390x
-          tags: docker.io/crazymax/ghaction-containerd:latest
+          tags: localhost:5000/name/app:latest
           outputs: type=oci,dest=/tmp/image.tar
       -
         name: Import image in containerd
         run: |
-          sudo ctr --debug i import --base-name docker.io/crazymax/ghaction-containerd --digests --all-platforms /tmp/image.tar
+          sudo ctr --debug i import --base-name localhost:5000/name/app --digests --all-platforms /tmp/image.tar
       -
         name: List containerd images
         run: |
@@ -83,7 +91,7 @@ jobs:
       -
         name: Push image with containerd
         run: |
-          sudo ctr --debug i push --user "${{ secrets.DOCKER_USERNAME }}:${{ secrets.DOCKER_PASSWORD }}" docker.io/crazymax/ghaction-containerd:latest
+          sudo ctr --debug i push --skip-verify --plain-http localhost:5000/name/app:latest
 
   config:
     runs-on: ubuntu-latest
