@@ -112,10 +112,13 @@ jobs:
 
 Following inputs can be used as `step.with` keys
 
-| Name                 | Type    | Default   | Description                        |
-|----------------------|---------|-----------|------------------------------------|
-| `containerd-version` | String  | `latest`  | [containerd](https://github.com/containerd/containerd) version. Example: `v1.4.1` |
-| `config`             | String  |           | Path to the configuration file |
+| Name                 | Type     | Default  | Description                                                                     |
+|----------------------|----------|----------|---------------------------------------------------------------------------------|
+| `containerd-version` | String   | `latest` | [containerd](https://github.com/containerd/containerd) version (e.g., `v1.4.1`) |
+| `config`             | String   |          | Containerd config file                                                          |
+| `config-inline`      | String   |          | Same as `config` but inline                                                     |
+
+> `config` and `config-inline` are mutually exclusive.
 
 ## Limitation
 

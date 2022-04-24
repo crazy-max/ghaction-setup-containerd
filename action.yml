@@ -8,11 +8,14 @@ branding:
 
 inputs:
   containerd-version:
-    description: 'containerd version. Example: v1.4.1'
+    description: 'containerd version (e.g., v1.4.1)'
     default: 'latest'
     required: false
   config:
-    description: 'Path to the configuration file'
+    description: 'Containerd config file'
+    required: false
+  config-inline:
+    description: 'Inline Containerd config'
     required: false
 
 runs:

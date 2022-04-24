@@ -3,6 +3,7 @@ import * as os from 'os';
 import * as path from 'path';
 import * as semver from 'semver';
 import * as util from 'util';
+import * as context from './context';
 import * as github from './github';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
@@ -31,33 +32,28 @@ export async function install(inputVersion: string): Promise<InstallResult> {
     filename
   );
 
-  core.startGroup(`Downloading ${downloadUrl}...`);
+  core.info(`Downloading ${downloadUrl}`);
   const downloadPath: string = await tc.downloadTool(downloadUrl);
   core.debug(`Downloaded to ${downloadPath}`);
-  core.endGroup();
 
-  core.startGroup('Extracting containerd');
   const extPath: string = await tc.extractTar(downloadPath);
   core.debug(`Extracted to ${extPath}`);
-  core.endGroup();
 
   const cachePath: string = await tc.cacheDir(extPath, 'ghaction-setup-containerd', version);
   core.debug(`Cached to ${cachePath}`);
 
   core.addPath(path.join(cachePath, 'bin'));
-  core.debug(`Added ${path.join(cachePath, 'bin')} to the path`);
+  core.info(`${path.join(cachePath, 'bin')} added to the PATH`);
 
+  core.info('Fixing perms');
   fs.readdir(path.join(cachePath, 'bin'), function (err, files) {
     if (err) {
       throw err;
     }
-    core.startGroup('Fixing perms');
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     files.forEach(function (file, index) {
-      core.info(path.join(cachePath, 'bin', file));
       fs.chmodSync(path.join(cachePath, 'bin', file), '0755');
     });
-    core.endGroup();
   });
 
   return {
@@ -66,18 +62,38 @@ export async function install(inputVersion: string): Promise<InstallResult> {
   };
 }
 
-export async function getConfig(inputConfig: string): Promise<string> {
-  if (inputConfig) {
-    return inputConfig;
+export async function getConfigInline(s: string): Promise<[string, string]> {
+  return getConfig(s, false);
+}
+
+export async function getConfigFile(s: string): Promise<[string, string]> {
+  return getConfig(s, true);
+}
+
+export async function getConfigDefault(): Promise<[string, string]> {
+  return getConfig(await generateConfig(), false);
+}
+
+async function getConfig(s: string, file: boolean): Promise<[string, string]> {
+  if (file) {
+    if (!fs.existsSync(s)) {
+      throw new Error(`config file ${s} not found`);
+    }
+    s = fs.readFileSync(s, {encoding: 'utf-8'});
   }
 
-  const configDir: string = path.join(os.homedir(), 'containerd');
+  const configDir: string = path.join(context.tmpDir(), 'containerd');
   if (!fs.existsSync(configDir)) {
     fs.mkdirSync(configDir, {recursive: true});
   }
 
-  const configFile: string = path.join(os.homedir(), 'config.toml');
-  await exec
+  const configFile: string = path.join(configDir, 'config.toml');
+  fs.writeFileSync(configFile, s);
+  return [configFile, s];
+}
+
+async function generateConfig(): Promise<string> {
+  return await exec
     .getExecOutput('containerd', ['config', 'default'], {
       ignoreReturnCode: true,
       silent: true
@@ -86,13 +102,8 @@ export async function getConfig(inputConfig: string): Promise<string> {
       if (res.stderr.length > 0 && res.exitCode != 0) {
         throw new Error(res.stderr.trim());
       }
-      core.startGroup(`Generating config to ${configFile}`);
-      core.info(res.stdout.trim());
-      fs.writeFileSync(configFile, res.stdout.trim());
-      core.endGroup();
+      return res.stdout.trim();
     });
-
-  return configFile;
 }
 
 const getFilename = (version: string): string => {
