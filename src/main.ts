@@ -15,7 +15,7 @@ async function run(): Promise<void> {
       return;
     }
 
-    let inputs: Inputs = await getInputs();
+    const inputs: Inputs = await getInputs();
     const install = await containerd.install(inputs.version);
     const config: string = await containerd.getConfig(inputs.config);
 

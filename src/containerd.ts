@@ -52,6 +52,7 @@ export async function install(inputVersion: string): Promise<InstallResult> {
       throw err;
     }
     core.startGroup('Fixing perms');
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     files.forEach(function (file, index) {
       core.info(path.join(cachePath, 'bin', file));
       fs.chmodSync(path.join(cachePath, 'bin', file), '0755');
