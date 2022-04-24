@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.3.0 (2022/04/24)
+
+* `config-inline` input (#65)
+* Update dev dependencies and workflow (#63)
+* Use built-in `getExecOutput` (#48)
+* Update ci workflow (#64)
+* Bump semver from 7.3.5 to 7.3.7 (#62)
+* Bump minimist from 1.2.5 to 1.2.6 (#59)
+* Bump ansi-regex from 5.0.0 to 5.0.1 (#50)
+* Bump tmpl from 1.0.4 to 1.0.5 (#49)
+* Bump @actions/exec from 1.0.4 to 1.1.1 (#42 #58)
+* Bump execa from 5.0.0 to 5.1.1 (#45)
+* Bump @actions/core from 1.3.0 to 1.6.0 (#47 #51)
+* Bump @actions/tool-cache from 1.6.1 to 1.7.2 (#44 #57)
+* Bump path-parse from 1.0.6 to 1.0.7 (#46)
+* Bump ws from 7.3.1 to 7.5.0 (#40)
+
 ## 1.2.0 (2021/05/26)
 
 * Bump lodash from 4.17.20 to 4.17.21 (#25)
