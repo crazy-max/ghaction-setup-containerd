@@ -9,7 +9,7 @@
 
 GitHub Action to set up [containerd](https://github.com/containerd/containerd).
 
-If you are interested, [check out](https://git.io/Je09Y) my other :octocat: GitHub Actions!
+If you are interested, [check out](https://github.com/crazy-max?tab=repositories&q=ghaction&type=source&language=&sort=) my other :octocat: GitHub Actions!
 
 ___
 
