@@ -39,7 +39,7 @@ jobs:
     steps:
       -
         name: Set up containerd
-        uses: crazy-max/ghaction-setup-containerd@v1
+        uses: crazy-max/ghaction-setup-containerd@v2
 ```
 
 ### Pull Docker image
@@ -56,7 +56,7 @@ jobs:
     steps:
       -
         name: Set up containerd
-        uses: crazy-max/ghaction-setup-containerd@v1
+        uses: crazy-max/ghaction-setup-containerd@v2
       -
         name: Pull Docker image
         run: |
@@ -86,7 +86,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       -
         name: Set up containerd
-        uses: crazy-max/ghaction-setup-containerd@v1
+        uses: crazy-max/ghaction-setup-containerd@v2
       -
         name: Build Docker image
         uses: docker/build-push-action@v3
