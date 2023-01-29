@@ -4,9 +4,9 @@ import * as path from 'path';
 import * as semver from 'semver';
 import * as util from 'util';
 import * as context from './context';
-import * as github from './github';
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import * as httpm from '@actions/http-client';
 import * as tc from '@actions/tool-cache';
 
 const osPlat: string = os.platform();
@@ -17,11 +17,31 @@ export interface InstallResult {
   cachePath: string;
 }
 
-export async function install(inputVersion: string): Promise<InstallResult> {
-  const release: github.GitHubRelease | null = await github.getRelease(inputVersion);
-  if (!release) {
-    throw new Error(`Cannot find containerd ${inputVersion} release`);
+export interface GitHubRelease {
+  id: number;
+  tag_name: string;
+  html_url: string;
+  assets: Array<string>;
+}
+
+export const getRelease = async (version: string): Promise<GitHubRelease> => {
+  const url = `https://raw.githubusercontent.com/crazy-max/ghaction-setup-containerd/master/.github/containerd-releases.json`;
+  const http: httpm.HttpClient = new httpm.HttpClient('ghaction-setup-containerd');
+  const resp: httpm.HttpClientResponse = await http.get(url);
+  const body = await resp.readBody();
+  const statusCode = resp.message.statusCode || 500;
+  if (statusCode >= 400) {
+    throw new Error(`Failed to get containerd release ${version} from ${url} with status code ${statusCode}: ${body}`);
   }
+  const releases = <Record<string, GitHubRelease>>JSON.parse(body);
+  if (!releases[version]) {
+    throw new Error(`Cannot find containerd release ${version} in ${url}`);
+  }
+  return releases[version];
+};
+
+export async function install(inputVersion: string): Promise<InstallResult> {
+  const release: GitHubRelease = await getRelease(inputVersion);
   core.debug(`Release found: ${release.tag_name}`);
 
   const version = release.tag_name.replace(/^v+|v+$/g, '');
