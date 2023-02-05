@@ -87,7 +87,7 @@ jobs:
         uses: crazy-max/ghaction-setup-containerd@v2
       -
         name: Build Docker image
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
