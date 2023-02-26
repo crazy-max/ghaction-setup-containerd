@@ -1542,21 +1542,6 @@
       "https://github.com/containerd/containerd/releases/download/v1.4.6/cri-containerd-cni-1.4.6-windows-amd64.tar.gz.sha256sum"
     ]
   },
-  "v1.5.1": {
-    "id": 42931639,
-    "tag_name": "v1.5.1",
-    "html_url": "https://github.com/containerd/containerd/releases/tag/v1.5.1",
-    "assets": [
-      "https://github.com/containerd/containerd/releases/download/v1.5.1/containerd-1.5.1-linux-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.5.1/containerd-1.5.1-linux-amd64.tar.gz.sha256sum",
-      "https://github.com/containerd/containerd/releases/download/v1.5.1/containerd-1.5.1-windows-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.5.1/containerd-1.5.1-windows-amd64.tar.gz.sha256sum",
-      "https://github.com/containerd/containerd/releases/download/v1.5.1/cri-containerd-cni-1.5.1-linux-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.5.1/cri-containerd-cni-1.5.1-linux-amd64.tar.gz.sha256sum",
-      "https://github.com/containerd/containerd/releases/download/v1.5.1/cri-containerd-cni-1.5.1-windows-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.5.1/cri-containerd-cni-1.5.1-windows-amd64.tar.gz.sha256sum"
-    ]
-  },
   "v1.4.5": {
     "id": 42813927,
     "tag_name": "v1.4.5",
