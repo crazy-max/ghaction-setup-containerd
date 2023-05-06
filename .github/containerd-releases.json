@@ -52,6 +52,43 @@
       "https://github.com/containerd/containerd/releases/download/v1.7.0/cri-containerd-cni-1.7.0-windows-amd64.tar.gz.sha256sum"
     ]
   },
+  "v1.6.21": {
+    "id": 102030724,
+    "tag_name": "v1.6.21",
+    "html_url": "https://github.com/containerd/containerd/releases/tag/v1.6.21",
+    "assets": [
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-linux-amd64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-linux-amd64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-linux-arm64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-linux-arm64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-linux-ppc64le.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-linux-ppc64le.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-linux-riscv64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-linux-riscv64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-windows-amd64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/containerd-1.6.21-windows-amd64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-linux-amd64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-linux-amd64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-linux-arm64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-linux-arm64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-linux-ppc64le.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-linux-ppc64le.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-linux-riscv64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-linux-riscv64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-windows-amd64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-1.6.21-windows-amd64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-linux-amd64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-linux-amd64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-linux-arm64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-linux-arm64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-linux-ppc64le.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-linux-ppc64le.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-linux-riscv64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-linux-riscv64.tar.gz.sha256sum",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-windows-amd64.tar.gz",
+      "https://github.com/containerd/containerd/releases/download/v1.6.21/cri-containerd-cni-1.6.21-windows-amd64.tar.gz.sha256sum"
+    ]
+  },
   "v1.6.20": {
     "id": 97554051,
     "tag_name": "v1.6.20",
