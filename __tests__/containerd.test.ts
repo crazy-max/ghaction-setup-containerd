@@ -18,7 +18,7 @@ describe('getRelease', () => {
   });
 
   it('unknown release', async () => {
-    await expect(containerd.getRelease('foo')).rejects.toThrowError(
+    await expect(containerd.getRelease('foo')).rejects.toThrow(
       new Error(
         'Cannot find containerd release foo in https://raw.githubusercontent.com/crazy-max/ghaction-setup-containerd/master/.github/containerd-releases.json'
       )
