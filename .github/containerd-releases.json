@@ -2296,32 +2296,6 @@
       "https://github.com/containerd/containerd/releases/download/v1.4.0/cri-containerd-cni-1.4.0-windows-amd64.tar.gz.sha256sum"
     ]
   },
-  "v1.4.0-rc.1": {
-    "id": 29583216,
-    "tag_name": "v1.4.0-rc.1",
-    "html_url": "https://github.com/containerd/containerd/releases/tag/v1.4.0-rc.1",
-    "assets": [
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.1/containerd-1.4.0-rc.1-linux-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.1/containerd-1.4.0-rc.1-linux-amd64.tar.gz.sha256sum",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.1/containerd-1.4.0-rc.1-windows-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.1/containerd-1.4.0-rc.1-windows-amd64.tar.gz.sha256sum",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.1/cri-containerd-cni-1.4.0-rc.1-linux-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.1/cri-containerd-cni-1.4.0-rc.1-linux-amd64.tar.gz.sha256sum",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.1/cri-containerd-cni-1.4.0-rc.1-windows-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.1/cri-containerd-cni-1.4.0-rc.1-windows-amd64.tar.gz.sha256sum"
-    ]
-  },
-  "v1.4.0-rc.0": {
-    "id": 29284223,
-    "tag_name": "v1.4.0-rc.0",
-    "html_url": "https://github.com/containerd/containerd/releases/tag/v1.4.0-rc.0",
-    "assets": [
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.0/containerd-1.4.0-rc.0-linux-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.0/containerd-1.4.0-rc.0-linux-amd64.tar.gz.sha256sum",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.0/containerd-1.4.0-rc.0-windows-amd64.tar.gz",
-      "https://github.com/containerd/containerd/releases/download/v1.4.0-rc.0/containerd-1.4.0-rc.0-windows-amd64.tar.gz.sha256sum"
-    ]
-  },
   "v1.3.7": {
     "id": 29255924,
     "tag_name": "v1.3.7",
