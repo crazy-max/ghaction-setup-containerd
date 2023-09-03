@@ -48,7 +48,7 @@ jobs:
       -
         name: Pull image
         run: |
-          sudo ctr i pull --all-platforms --all-metadata docker.io/crazymax/diun:latest
+          sudo ctr i pull --all-platforms --all-metadata docker.io/library/alpine:latest
 
   build-push:
     runs-on: ubuntu-latest
