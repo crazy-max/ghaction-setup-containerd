@@ -37,7 +37,7 @@ jobs:
     steps:
       -
         name: Set up containerd
-        uses: crazy-max/ghaction-setup-containerd@v2
+        uses: crazy-max/ghaction-setup-containerd@v3
 ```
 
 ### Pull Docker image
@@ -54,7 +54,7 @@ jobs:
     steps:
       -
         name: Set up containerd
-        uses: crazy-max/ghaction-setup-containerd@v2
+        uses: crazy-max/ghaction-setup-containerd@v3
       -
         name: Pull Docker image
         run: |
@@ -73,9 +73,9 @@ jobs:
   containerd:
     runs-on: ubuntu-latest
     steps:
-       -
+      -
         name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -84,7 +84,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       -
         name: Set up containerd
-        uses: crazy-max/ghaction-setup-containerd@v2
+        uses: crazy-max/ghaction-setup-containerd@v3
       -
         name: Build Docker image
         uses: docker/build-push-action@v4
@@ -108,7 +108,7 @@ jobs:
 
 ### inputs
 
-Following inputs can be used as `step.with` keys
+The following inputs can be used as `step.with` keys
 
 | Name                 | Type     | Default  | Description                                                                     |
 |----------------------|----------|----------|---------------------------------------------------------------------------------|
@@ -124,11 +124,10 @@ This action is only available for Linux [virtual environments](https://help.gith
 
 ## Contributing
 
-Want to contribute? Awesome! The most basic way to show your support is to star the project, or to raise issues. If
-you want to open a pull request, please read the [contributing guidelines](.github/CONTRIBUTING.md).
-
-You can also support this project by [**becoming a sponsor on GitHub**](https://github.com/sponsors/crazy-max) or by
-making a [Paypal donation](https://www.paypal.me/crazyws) to ensure this journey continues indefinitely!
+Want to contribute? Awesome! The most basic way to show your support is to star
+the project, or to raise issues. You can also support this project by [**becoming a sponsor on GitHub**](https://github.com/sponsors/crazy-max)
+or by making a [PayPal donation](https://www.paypal.me/crazyws) to ensure this
+journey continues indefinitely!
 
 Thanks again for your support, it is much appreciated! :pray:
 
