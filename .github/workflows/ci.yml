@@ -76,7 +76,7 @@ jobs:
           sudo ctr plugins list --detailed
       -
         name: Build Docker image
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./test
           file: ./test/Dockerfile
