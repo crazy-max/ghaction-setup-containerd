@@ -52,6 +52,12 @@
       "https://github.com/containerd/containerd/releases/download/v1.7.18/cri-containerd-cni-1.7.18-windows-amd64.tar.gz.sha256sum"
     ]
   },
+  "api/v1.7.19": {
+    "id": 162410326,
+    "tag_name": "api/v1.7.19",
+    "html_url": "https://github.com/containerd/containerd/releases/tag/api/v1.7.19",
+    "assets": []
+  },
   "v2.0.0-rc.3": {
     "id": 160507680,
     "tag_name": "v2.0.0-rc.3",
