@@ -5,6 +5,11 @@
 [![Become a sponsor](https://img.shields.io/badge/sponsor-crazy--max-181717.svg?logo=github&style=flat-square)](https://github.com/sponsors/crazy-max)
 [![Paypal Donate](https://img.shields.io/badge/donate-paypal-00457c.svg?logo=paypal&style=flat-square)](https://www.paypal.me/crazyws)
 
+## ⚠️ Abandoned project
+
+This project is not maintained anymore and is abandoned. Feel free to fork and
+make your own changes if needed. 
+
 ## About
 
 GitHub Action to set up [containerd](https://github.com/containerd/containerd).
